@@ -1,0 +1,9 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: промежуточный каталог (D:\Documents\МИЭМ\Истратов\лаба 4\server\obj\x64\Debug\) содержит файлы, которые используются совместно с другим проектом (lab4.vcxproj).  Это может привести к ошибкам очистки и перестроения.
+  Validating sources
+  Copying sources remotely to '192.168.91.135'
+  Validating architecture
+  Starting remote build
+  Compiling sources:
+  server.c
+  Linking objects
+  server.vcxproj -> D:\Documents\МИЭМ\Истратов\лаба 4\server\bin\x64\Debug\server.out

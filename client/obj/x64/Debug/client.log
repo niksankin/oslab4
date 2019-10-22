@@ -1,0 +1,17 @@
+﻿  Validating sources
+  Copying sources remotely to '192.168.91.135'
+  Validating architecture
+  Starting remote build
+  Compiling sources:
+  client.c
+D:\Documents\МИЭМ\Истратов\лаба 4\client\client.c(23,10): warning : conversion to ‘uint64_t {aka long unsigned int}’ from ‘int’ may change the sign of the result [-Wsign-conversion]
+D:\Documents\МИЭМ\Истратов\лаба 4\client\client.c(23,10): warning :   maxid = semctl(0, 0, SEM_INFO, arg);
+D:\Documents\МИЭМ\Истратов\лаба 4\client\client.c(23,10): warning :           ^~~~~~
+D:\Documents\МИЭМ\Истратов\лаба 4\client\client.c(62,24): warning : conversion to ‘__uid_t {aka unsigned int}’ from ‘uint64_t {aka long unsigned int}’ may alter its value [-Wconversion]
+D:\Documents\МИЭМ\Истратов\лаба 4\client\client.c(62,24): warning :    user_data = getpwuid(sem_arr[i].uid);
+D:\Documents\МИЭМ\Истратов\лаба 4\client\client.c(62,24): warning :                         ^~~~~~~
+D:\Documents\МИЭМ\Истратов\лаба 4\client\client.c(128,7): warning : conversion to ‘uint64_t {aka long unsigned int}’ from ‘ssize_t {aka long int}’ may change the sign of the result [-Wsign-conversion]
+D:\Documents\МИЭМ\Истратов\лаба 4\client\client.c(128,7): warning :    r = recv(fd, (char *)&pong, sizeof(pong), MSG_WAITALL);
+D:\Documents\МИЭМ\Истратов\лаба 4\client\client.c(128,7): warning :        ^~~~
+  Linking objects
+  client.vcxproj -> D:\Documents\МИЭМ\Истратов\лаба 4\client\bin\x64\Debug\client.out
