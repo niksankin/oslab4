@@ -46,9 +46,13 @@ int main(int argc, char *argv[]) {
 		return -1;
 	}
 
-	sendto(fd, (const char *)&pong, sizeof(pong),
+	if (sendto(fd, (const char *)&pong, sizeof(pong),
 		0, (const struct sockaddr *) &cli_addr,
-		sizeof(cli_addr));
+		sizeof(cli_addr)) == -1)
+	{
+		perror("send error");
+		return -1;
+	}
 	
 	if (recvfrom(fd, (char *)&arr_size, sizeof(arr_size),
 		MSG_WAITALL, (struct sockaddr *) &cli_addr,

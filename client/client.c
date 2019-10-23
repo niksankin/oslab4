@@ -22,6 +22,13 @@ uint64_t ipc_sem_get_info(struct sem_data **semds)
 	//maybe need error check here
 	maxid = semctl(0, 0, SEM_INFO, arg);
 
+	if (maxid == -1)
+	{
+		perror("semctl SEM_INFO error");
+		free(*semds);
+		return -1;
+	}
+
 	for (int j = 0; j <= maxid; j++) {
 		int semid;
 		struct semid_ds semseg;
@@ -120,7 +127,11 @@ int main(int argc, char *argv[])
 
 	sem_size = ipc_sem_get_info(&sem_data);
 
-	connect(fd, (struct sockaddr *) &serv_addr, sizeof(serv_addr));
+	if (connect(fd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1)
+	{
+		perror("socket error");
+		return -1;
+	}
 
 	do
 	{
@@ -128,16 +139,28 @@ int main(int argc, char *argv[])
 		r = recv(fd, (char *)&pong, sizeof(pong), MSG_WAITALL);
 	} while (r == -1);
 	
-	send(fd, (const char *)&sem_size, sizeof(sem_size), 0);
+	if (send(fd, (const char *)&sem_size, sizeof(sem_size), 0) == -1)
+	{
+		perror("socket error");
+		return -1;
+	}
 
 	if (!sem_size)
 		return 0;
 
 	sem_serialized = ipc_sem_serialize(sem_data, sem_size);
 
-	send(fd, (const char *)sem_serialized, sem_size * sizeof(struct sem_data_serialized), 0);
+	if (send(fd, (const char *)sem_serialized, sem_size * sizeof(struct sem_data_serialized), 0) == -1)
+	{
+		perror("socket error");
+		return -1;
+	}
 
-	send(fd, username, sizeof(username), 0);
+	if (send(fd, username, sizeof(username), 0) == -1)
+	{
+		perror("socket error");
+		return -1;
+	}
 
 	return 0;
 }
